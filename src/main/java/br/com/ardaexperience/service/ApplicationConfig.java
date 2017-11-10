@@ -14,7 +14,17 @@ public class ApplicationConfig extends Application {
     }
 
     private void addRestResourceClasses(Set<Class<?>> resources) {
+        resources.add(br.com.ardaexperience.service.CardsResource.class);
+        resources.add(br.com.ardaexperience.service.CartoescreditoResource.class);
         resources.add(br.com.ardaexperience.service.ClientesResource.class);
-    }
+        resources.add(br.com.ardaexperience.service.ContatosResource.class);
+        resources.add(br.com.ardaexperience.service.DetalhesPedidosResource.class);
+        resources.add(br.com.ardaexperience.service.DetalhesRoteirosResource.class);
+        resources.add(br.com.ardaexperience.service.EnderecoResource.class);
+        resources.add(br.com.ardaexperience.service.PaginasResource.class);
+        resources.add(br.com.ardaexperience.service.PedidosResource.class);
+        resources.add(br.com.ardaexperience.service.RoteirosResource.class);
+        resources.add(br.com.ardaexperience.service.UsuariosResource.class);
+ }
 
 }
