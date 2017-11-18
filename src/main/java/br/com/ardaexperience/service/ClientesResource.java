@@ -31,28 +31,29 @@ public class ClientesResource {
     @Path("{id}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public String getCliente(@PathParam("id") String idCliente) {
+    public String consultaClientePorId(@PathParam("id") String idCliente) {
         Long id = Long.valueOf(idCliente);
         return gson.toJson(clienteRemote.consultarPorId(id));
+    }
+
+    @Path("{id}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String atualizarCliente(String clienteJson) throws Exception {
+        Cliente cliente = gson.fromJson(clienteJson, Cliente.class);
+        return gson.toJson(clienteRemote.atualizar(cliente));
     }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public String salvarCliente(String clienteJson) {
+    public String registraCliente(String clienteJson) {
         try {
             Cliente cliente = gson.fromJson(clienteJson, Cliente.class);
             return gson.toJson(clienteRemote.registrar(cliente));
         } catch (Exception e) {
             return null;
         }
-    }
-
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public String putCliente(String clienteJson) throws Exception {
-        Cliente cliente = gson.fromJson(clienteJson, Cliente.class);
-        return gson.toJson(clienteRemote.atualizar(cliente));
     }
 
 }

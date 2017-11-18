@@ -35,6 +35,14 @@ public class RoteirosResource {
         Long id = Long.valueOf(idRoteiro);
         return gson.toJson(roteiroRemote.consultarPorId(id));
     }
+    
+    @Path("{id}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String putCliente(String roteiroJson) throws Exception {
+        Roteiro roteiro = gson.fromJson(roteiroJson, Roteiro.class);
+        return gson.toJson(roteiroRemote.atualizar(roteiro));
+    }
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
@@ -46,13 +54,6 @@ public class RoteirosResource {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public String putCliente(String roteiroJson) throws Exception {
-        Roteiro roteiro = gson.fromJson(roteiroJson, Roteiro.class);
-        return gson.toJson(roteiroRemote.atualizar(roteiro));
     }
 
 }

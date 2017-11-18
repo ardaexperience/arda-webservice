@@ -14,7 +14,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("clientes/pedidos")
+@Path("pedidos")
 public class PedidosResource {
 
     @EJB
@@ -36,6 +36,14 @@ public class PedidosResource {
         return gson.toJson(pedidoRemote.consultarPorId(id));
     }
 
+    @Path("{id}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String putPedido(String pedidoJson) throws Exception {
+        Pedido pedido = gson.fromJson(pedidoJson, Pedido.class);
+        return gson.toJson(pedidoRemote.atualizar(pedido));
+    }
+
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -47,12 +55,4 @@ public class PedidosResource {
             return null;
         }
     }
-
-    @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    public String putPedido(String pedidoJson) throws Exception {
-        Pedido pedido = gson.fromJson(pedidoJson, Pedido.class);
-        return gson.toJson(pedidoRemote.atualizar(pedido));
-    }
-    
 }
